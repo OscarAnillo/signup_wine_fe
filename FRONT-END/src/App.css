@@ -4,12 +4,16 @@
   margin: 0;
   padding: 0;
 }
+img {
+  max-width: 100%;
+}
 .app {
   background-color: rgb(231, 227, 216);
   font-family: 'Open Sans', sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
 }
+
 .row {
   display: flex;
   align-items: center;
@@ -149,4 +153,29 @@
 .sign-up-footer span {
   color: orange;
   font-weight: 700;
+}
+
+/* UI Component */
+.ui-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+  margin: 8em auto;
+  position: relative;
+}
+.ui-row > div:nth-child(1) {
+  color: #fff;
+  position: absolute;
+  right: 3%;
+  width: 50%;
+}
+.ui-row > div h1 {
+  color: rgb(211, 34, 34);
+  text-shadow: 5px 5px 3px #333;
+}
+.ui-row > div p {
+  color: #fff;
+  line-height: 25px;
+  text-shadow: 1px 1px 1px #333;
 }
