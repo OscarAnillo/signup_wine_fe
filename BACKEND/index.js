@@ -8,8 +8,11 @@ const authRoute = require("./Routes/auth.js")
 
 const PORT = 3005;
 
+// Middleware
 app.use(cors())
 app.use(express.json());
+
+// Route Middleware
 app.use("/api/auth", authRoute)
 
 
