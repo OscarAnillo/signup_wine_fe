@@ -1,6 +1,8 @@
 import { useState } from "react"
+import axios from 'axios';
+import PropTypes from 'prop-types';
 
-export const LogInComponent = () => {
+export const LogInComponent = ({ setSubmitted }) => {
     const [userInput, setUserInput] = useState({
         email:"",
         password:""
@@ -11,9 +13,29 @@ export const LogInComponent = () => {
         setUserInput({...userInput, [name]:value})
     }
 
+    const submitHandler = (e) => {
+        e.preventDefault();
+        if(!userInput.email || !userInput.password){
+            alert('Please provide an email or password!');
+            return;
+        }
+        axios.post("http://localhost:3005/api/auth/login", {
+          email: userInput.email,
+          password: userInput.password  
+        })
+        .then((res) => {
+            setSubmitted(true)
+            console.log(res.data);
+        })
+        .catch((err)  => {
+            alert("User not found!")
+            console.log(err)
+        });
+    }
+
     return (
-        <div className="log-in-div">
-            <form className="log-in-form">
+        <div className="log-in-div"> 
+            <form className="log-in-form" onSubmit={submitHandler}>
                 <h1>Login</h1>
                 <p>Please sign in to continue</p>
                 <input type="text" placeholder="Email" name="email" onChange={changeHandler} />
@@ -25,4 +47,8 @@ export const LogInComponent = () => {
             </div>
         </div>
     )
+}
+
+LogInComponent.propTypes = {
+    setSubmitted: PropTypes.func.isRequired
 }
